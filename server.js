@@ -4,12 +4,16 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 
+// Replace with your actual subscription key
+const SUBSCRIPTION_KEY = "adb9956c4e884f9cae0ad14a0ff60738";
+
+// Replace with your actual endpoint URL
 const PREDICTION_URL = "https://bizhivelang.cognitiveservices.azure.com/language/:query-knowledgebases?projectName=BizzyBot&api-version=2021-10-01&deploymentName=production";
 
 app.post("/api/messages", async (req, res) => {
     try {
         const response = await axios.post(PREDICTION_URL, req.body, {
-            headers: { "Ocp-Apim-Subscription-Key": "MCWU5xkOqM86zxCsMdRWU5kBy4k4nNEzgK7RFv3baBJxMIMF5Ry1JQQJ99BBACrIdLPXJ3w3AAAaACOGAqT8" },
+            headers: { "Ocp-Apim-Subscription-Key": SUBSCRIPTION_KEY },
         });
         res.json(response.data);
     } catch (error) {
